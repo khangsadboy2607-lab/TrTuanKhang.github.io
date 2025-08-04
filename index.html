@@ -16,36 +16,10 @@
 
     body {
       position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
+      height: 100vh;
+      overflow: hidden;
       color: #fff;
-      background-color: #121212;
-      transition: background 0.5s, color 0.5s;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      justify-content: center;
-      padding: 10px;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffd166;
+      background-color: #000;
     }
 
     #bg-video {
@@ -69,94 +43,78 @@
 
     .wrapper {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 1000px;
-      width: 95%;
-      margin: 10vh auto 5vh;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
+      max-width: 900px;
+      width: 90%;
+      margin: auto;
+      height: 90vh;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
       overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
       z-index: 1;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .left, .right {
-      width: 100%;
-      padding: 30px;
+      margin-top: 30px;
     }
 
     .left {
-      text-align: center;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background: rgba(255, 255, 255, 0.05);
     }
 
     .left img {
-      width: 160px;
-      height: 160px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      border: 3px solid #fff;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-      margin-bottom: 20px;
-      transition: transform 0.3s ease;
+      border: 4px solid #ffd166;
+      box-shadow: 0 0 20px rgba(255, 209, 102, 0.8);
     }
 
-    .left img:hover {
-      transform: scale(1.05);
-    }
-
-    .info p {
-      margin: 6px 0;
-      font-size: 0.95rem;
+    .right {
+      flex: 2;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .right h1 {
-      font-size: 2.5rem;
-      text-align: center;
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     }
 
     .subtitle {
-      font-size: 1.2rem;
-      margin: 10px 0;
-      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
       color: #a8d0e6;
     }
 
-    .section {
-      margin-top: 20px;
+    .info p {
+      margin: 10px 0;
+      font-size: 1rem;
     }
 
-    .section h2 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
+    .info a {
       color: #ffd166;
+      text-decoration: none;
+      transition: color 0.3s;
     }
 
-    .section ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .section ul li {
-      margin-bottom: 5px;
+    .info a:hover {
+      color: #ff6b6b;
     }
 
     .social {
       margin: 20px 0;
-      text-align: center;
     }
 
     .social a {
       color: #fff;
-      margin: 0 10px;
+      margin-right: 15px;
       font-size: 1.5rem;
       transition: transform 0.3s;
     }
@@ -167,83 +125,76 @@
     }
 
     .footer {
+      margin-top: 30px;
       font-size: 0.85rem;
-      text-align: center;
+      text-align: right;
       opacity: 0.8;
-      padding-bottom: 20px;
     }
 
-    iframe#bg-music-player {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .wrapper {
-        margin-top: 80px;
-      }
-      .left img {
-        width: 120px;
-        height: 120px;
-      }
+    #music-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+      padding: 12px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 2;
+      backdrop-filter: blur(10px);
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#info">Giới thiệu</a>
-    <a href="#skills">Kỹ năng</a>
-    <a href="#projects">Dự án</a>
-    <a href="#contact">Liên hệ</a>
-  </nav>
-
+  <!-- Background Video -->
   <iframe id="bg-video" src="https://www.youtube.com/embed/dr147S_qAZ?autoplay=1&mute=1&loop=1&playlist=dr147S_qAZ" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-  <iframe id="bg-music-player" src="https://www.youtube.com/embed/0tFUfuEhh28?autoplay=1&mute=0&loop=1&playlist=0tFUfuEhh28" frameborder="0" allow="autoplay"></iframe>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop autoplay>
+    <source src="leleuluyngam.mp3" type="audio/mpeg" />
+  </audio>
+
+  <button id="music-toggle" title="Play/Pause Music">🔊</button>
 
   <div class="wrapper">
-    <div class="left" id="info">
+    <div class="left">
       <img src="avatar.png" alt="avatar" />
+    </div>
+    <div class="right">
+      <h1>Tr Tuan Khangg</h1>
+      <p class="subtitle">Developer | Discord Bot Maker | Always Learning</p>
       <div class="info">
         <p><strong>Nickname:</strong> khangshark123</p>
         <p><strong>Email:</strong> <a href="mailto:khangsadboy2607@gmail.com">khangsadboy2607@gmail.com</a></p>
         <p><strong>Facebook:</strong> <a href="https://facebook.com/tuan.khang.374463" target="_blank">facebook.com/tuan.khang.374463</a></p>
         <p><strong>Discord:</strong> khangshark123</p>
       </div>
-    </div>
-    <div class="right">
-      <h1>Tr Tuan Khangg</h1>
-      <p class="subtitle">Developer | Discord Bot Maker | Always Learning</p>
-
-      <div class="section" id="skills">
-        <h2>Kỹ năng</h2>
-        <ul>
-          <li>🔧 Discord.js Bot Development</li>
-          <li>🌐 HTML, CSS, JavaScript</li>
-          <li>💾 C++ (đang học)</li>
-          <li>🎨 UI/UX cơ bản</li>
-        </ul>
+      <div class="social">
+        <a href="https://facebook.com/tuan.khang.374463" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="mailto:khangsadboy2607@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/khangshark123" target="_blank"><i class="fab fa-github"></i></a>
       </div>
-
-      <div class="section" id="projects">
-        <h2>Dự án</h2>
-        <ul>
-          <li>🤖 Bot Casino Discord (Demo)</li>
-          <li>💼 Trang portfolio cá nhân (bạn đang xem)</li>
-        </ul>
-      </div>
-
-      <div class="section" id="contact">
-        <h2>Liên hệ</h2>
-        <div class="social">
-          <a href="https://facebook.com/tuan.khang.374463" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="mailto:khangsadboy2607@gmail.com"><i class="fas fa-envelope"></i></a>
-          <a href="https://github.com/khangshark123" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-
-      <div class="footer">Profile make by khangshark123 🦈💢</div>
+      <div class="footer">Profile by khangshark123 🦈💢</div>
     </div>
   </div>
+
+  <script>
+    const music = document.getElementById('bg-music');
+    const btn = document.getElementById('music-toggle');
+    let playing = true;
+    btn.addEventListener('click', () => {
+      if (playing) {
+        music.pause();
+        btn.textContent = '🔈';
+      } else {
+        music.play();
+        btn.textContent = '🔊';
+      }
+      playing = !playing;
+    });
+  </script>
 </body>
 </html>
-
 
