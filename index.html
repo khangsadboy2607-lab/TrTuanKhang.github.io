@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <title>khangshark123 - Trang cá nhân</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Thêm thư viện Typed.js -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #1e3c72, #2a5298);
       color: white;
       display: flex;
       flex-direction: column;
@@ -21,6 +19,15 @@
       text-align: center;
       padding-top: 60px;
       overflow-x: hidden;
+      background: linear-gradient(-45deg, #1e3c72, #2a5298, #1e3c72, #2a5298);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
@@ -84,7 +91,6 @@
       color: #ccc;
     }
 
-    /* Ẩn iframe nhạc nền */
     .hidden-audio {
       width: 0;
       height: 0;
@@ -100,13 +106,11 @@
 
   <p>Mình là <strong>Tuan Khang <3</strong> — Khangshark123 profile 🦈</p>
 
-  <!-- Video hiển thị chính -->
   <iframe width="560" height="315" 
     src="https://www.youtube.com/embed/dr147S_qAZE?autoplay=1&mute=0&loop=1&playlist=dr147S_qAZE" 
     title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
   </iframe>
 
-  <!-- Nhạc nền ẩn -->
   <iframe class="hidden-audio"
     src="https://www.youtube.com/embed/0tFUfuEhh28?autoplay=1&mute=0&loop=1&playlist=0tFUfuEhh28"
     allow="autoplay">
@@ -132,3 +136,4 @@
   </script>
 </body>
 </html>
+
