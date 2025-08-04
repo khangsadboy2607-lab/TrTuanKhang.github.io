@@ -1,200 +1,134 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tr Tuan Khangg - Developer</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>khangshark123 - Trang cá nhân</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Thêm thư viện Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-      color: #fff;
-      background-color: #000;
-    }
-
-    #bg-video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120%;
-      height: 120%;
-      transform: translate(-50%, -50%);
-      z-index: -2;
-    }
-
-    body::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: -1;
-    }
-
-    .wrapper {
-      display: flex;
-      max-width: 900px;
-      width: 90%;
-      margin: auto;
-      height: 90vh;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(12px);
-      z-index: 1;
-      margin-top: 30px;
-    }
-
-    .left {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .left img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 4px solid #ffd166;
-      box-shadow: 0 0 20px rgba(255, 209, 102, 0.8);
-    }
-
-    .right {
-      flex: 2;
-      padding: 40px 30px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+      padding-top: 60px;
+      overflow-x: hidden;
     }
 
-    .right h1 {
-      font-size: 3rem;
-      font-weight: 600;
+    h1 {
+      font-size: 3em;
       margin-bottom: 10px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+      min-height: 60px;
     }
 
-    .subtitle {
-      font-size: 1.4rem;
+    .typed-cursor {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #fff;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 500px;
       margin-bottom: 20px;
-      color: #a8d0e6;
     }
 
-    .info p {
-      margin: 10px 0;
-      font-size: 1rem;
-    }
-
-    .info a {
-      color: #ffd166;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .info a:hover {
-      color: #ff6b6b;
-    }
-
-    .social {
-      margin: 20px 0;
-    }
-
-    .social a {
-      color: #fff;
-      margin-right: 15px;
-      font-size: 1.5rem;
-      transition: transform 0.3s;
-    }
-
-    .social a:hover {
-      transform: scale(1.2);
-      color: #ffd166;
-    }
-
-    .footer {
-      margin-top: 30px;
-      font-size: 0.85rem;
-      text-align: right;
-      opacity: 0.8;
-    }
-
-    #music-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.2);
+    .button {
+      margin: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
       border: none;
-      color: #fff;
-      padding: 12px;
-      border-radius: 50%;
-      font-size: 1.4rem;
+      border-radius: 5px;
+      background-color: #ffffff;
+      color: #2a5298;
       cursor: pointer;
-      z-index: 2;
-      backdrop-filter: blur(10px);
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #dcdcdc;
+    }
+
+    iframe {
+      margin: 30px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .links {
+      margin-top: 20px;
+      line-height: 1.8;
+      font-size: 1em;
+    }
+
+    a {
+      color: #ffeb3b;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    /* Ẩn iframe nhạc nền */
+    .hidden-audio {
+      width: 0;
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
     }
   </style>
 </head>
 <body>
-  <!-- Background Video -->
-  <iframe id="bg-video" src="https://www.youtube.com/embed/dr147S_qAZ?autoplay=1&mute=1&loop=1&playlist=dr147S_qAZ" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-  <!-- Background Music -->
-  <audio id="bg-music" loop autoplay>
-    <source src="leleuluyngam.mp3" type="audio/mpeg" />
-  </audio>
+  <h1><span id="typed-text"></span></h1>
 
-  <button id="music-toggle" title="Play/Pause Music">🔊</button>
+  <p>Mình là <strong>Tuan Khang <3</strong> — Khangshark123 profile 🦈</p>
 
-  <div class="wrapper">
-    <div class="left">
-      <img src="avatar.png" alt="avatar" />
-    </div>
-    <div class="right">
-      <h1>Tr Tuan Khangg</h1>
-      <p class="subtitle">Developer | Discord Bot Maker | Always Learning</p>
-      <div class="info">
-        <p><strong>Nickname:</strong> khangshark123</p>
-        <p><strong>Email:</strong> <a href="mailto:khangsadboy2607@gmail.com">khangsadboy2607@gmail.com</a></p>
-        <p><strong>Facebook:</strong> <a href="https://facebook.com/tuan.khang.374463" target="_blank">facebook.com/tuan.khang.374463</a></p>
-        <p><strong>Discord:</strong> khangshark123</p>
-      </div>
-      <div class="social">
-        <a href="https://facebook.com/tuan.khang.374463" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="mailto:khangsadboy2607@gmail.com"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/khangshark123" target="_blank"><i class="fab fa-github"></i></a>
-      </div>
-      <div class="footer">Profile by khangshark123 🦈💢</div>
-    </div>
+  <!-- Video hiển thị chính -->
+  <iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/dr147S_qAZE?autoplay=1&mute=0&loop=1&playlist=dr147S_qAZE" 
+    title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+  </iframe>
+
+  <!-- Nhạc nền ẩn -->
+  <iframe class="hidden-audio"
+    src="https://www.youtube.com/embed/0tFUfuEhh28?autoplay=1&mute=0&loop=1&playlist=0tFUfuEhh28"
+    allow="autoplay">
+  </iframe>
+
+  <button class="button" onclick="alert('Cảm ơn bạn đã ghé thăm profile của tôi...!')">Click here...!</button>
+
+  <div class="links">
+    📧 Gmail: <a href="mailto:khangsadboy2607@gmail.com">khangsadboy2607@gmail.com</a><br>
+    📘 Facebook: <a href="https://www.facebook.com/tuan.khang.374463/" target="_blank">facebook.com/tuan.khang.374463</a><br>
+    💬 Discord: <strong>khangshark123</strong>
   </div>
 
+  <footer>&copy; 2025 • Create by Tuan Khang 🦈💢</footer>
+
   <script>
-    const music = document.getElementById('bg-music');
-    const btn = document.getElementById('music-toggle');
-    let playing = true;
-    btn.addEventListener('click', () => {
-      if (playing) {
-        music.pause();
-        btn.textContent = '🔈';
-      } else {
-        music.play();
-        btn.textContent = '🔊';
-      }
-      playing = !playing;
+    new Typed("#typed-text", {
+      strings: ["Wellcommee !!!", "Chào mừng đến với profile KhangShark123 🦈", "Hãy ở lại chơi lâu nhé!"],
+      typeSpeed: 60,
+      backSpeed: 30,
+      loop: true
     });
   </script>
 </body>
 </html>
-
