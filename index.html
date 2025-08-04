@@ -7,79 +7,243 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { position: relative; height: 100vh; overflow: hidden; color: #fff; }
-    /* Background video full cover */
-    #bg-video { position: absolute; top: 50%; left: 50%; width: 120%; height: 120%; transform: translate(-50%, -50%); z-index: -2; }
-    /* Overlay gradient for contrast */
-    body::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: -1; }
-    /* Background music control (hidden) */
-    #bg-music { display: none; }
-    .wrapper { display: flex; max-width: 800px; width: 90%; margin: auto; height: 100%; background: rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 1; }
-    .left { flex: 1; display: flex; justify-content: center; align-items: center; background: rgba(255,255,255,0.05); }
-    .left img { width: 180px; height: 180px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-    .right { flex: 2; padding: 40px 30px; display: flex; flex-direction: column; justify-content: center; }
-    .right h1 { font-size: 2.8rem; font-weight: 600; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
-    .subtitle { font-size: 1.3rem; margin-bottom: 20px; color: #a8d0e6; }
-    .info p { margin: 10px 0; font-size: 1rem; }
-    .info a { color: #ffd166; text-decoration: none; transition: color 0.3s; }
-    .info a:hover { color: #ff6b6b; }
-    .social { margin: 20px 0; }
-    .social a { color: #fff; margin-right: 15px; font-size: 1.5rem; transition: transform 0.3s; }
-    .social a:hover { transform: scale(1.2); color: #ffd166; }
-    .footer { margin-top: 30px; font-size: 0.85rem; text-align: right; opacity: 0.8; }
-    /* Play/Pause button */
-    #music-toggle { position: fixed; bottom: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 10px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 2; backdrop-filter: blur(10px); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #fff;
+      background-color: #121212;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd166;
+    }
+
+    #bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      transform: translate(-50%, -50%);
+      z-index: -2;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: -1;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1000px;
+      width: 95%;
+      margin: 10vh auto 5vh;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .left, .right {
+      width: 100%;
+      padding: 30px;
+    }
+
+    .left {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .left img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .left img:hover {
+      transform: scale(1.05);
+    }
+
+    .info p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .right h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      text-align: center;
+      color: #a8d0e6;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #ffd166;
+    }
+
+    .section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .section ul li {
+      margin-bottom: 5px;
+    }
+
+    .social {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .social a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: transform 0.3s;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
+      color: #ffd166;
+    }
+
+    .footer {
+      font-size: 0.85rem;
+      text-align: center;
+      opacity: 0.8;
+      padding-bottom: 20px;
+    }
+
+    iframe#bg-music-player {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        margin-top: 80px;
+      }
+      .left img {
+        width: 120px;
+        height: 120px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Background Video -->
+  <nav>
+    <a href="#info">Giới thiệu</a>
+    <a href="#skills">Kỹ năng</a>
+    <a href="#projects">Dự án</a>
+    <a href="#contact">Liên hệ</a>
+  </nav>
+
   <iframe id="bg-video" src="https://www.youtube.com/embed/dr147S_qAZ?autoplay=1&mute=1&loop=1&playlist=dr147S_qAZ" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-  <!-- Background Music (upload music.mp3 to repo) -->
-  <audio id="bg-music" loop>
-    <source src="music.mp3" type="audio/mpeg" />
-  </audio>
-  <!-- Toggle Button -->
-  <button id="music-toggle" title="Play/Pause Music">🔈</button>
+  <iframe id="bg-music-player" src="https://www.youtube.com/embed/0tFUfuEhh28?autoplay=1&mute=0&loop=1&playlist=0tFUfuEhh28" frameborder="0" allow="autoplay"></iframe>
 
   <div class="wrapper">
-    <div class="left">
+    <div class="left" id="info">
       <img src="avatar.png" alt="avatar" />
-    </div>
-    <div class="right">
-      <h1>Tr Tuan Khangg</h1>
-      <p class="subtitle">Developer | Discord Bot Maker | Always Learning</p>
       <div class="info">
         <p><strong>Nickname:</strong> khangshark123</p>
         <p><strong>Email:</strong> <a href="mailto:khangsadboy2607@gmail.com">khangsadboy2607@gmail.com</a></p>
         <p><strong>Facebook:</strong> <a href="https://facebook.com/tuan.khang.374463" target="_blank">facebook.com/tuan.khang.374463</a></p>
         <p><strong>Discord:</strong> khangshark123</p>
       </div>
-      <div class="social">
-        <a href="https://facebook.com/tuan.khang.374463" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="mailto:khangsadboy2607@gmail.com"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/khangshark123" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="right">
+      <h1>Tr Tuan Khangg</h1>
+      <p class="subtitle">Developer | Discord Bot Maker | Always Learning</p>
+
+      <div class="section" id="skills">
+        <h2>Kỹ năng</h2>
+        <ul>
+          <li>🔧 Discord.js Bot Development</li>
+          <li>🌐 HTML, CSS, JavaScript</li>
+          <li>💾 C++ (đang học)</li>
+          <li>🎨 UI/UX cơ bản</li>
+        </ul>
       </div>
+
+      <div class="section" id="projects">
+        <h2>Dự án</h2>
+        <ul>
+          <li>🤖 Bot Casino Discord (Demo)</li>
+          <li>💼 Trang portfolio cá nhân (bạn đang xem)</li>
+        </ul>
+      </div>
+
+      <div class="section" id="contact">
+        <h2>Liên hệ</h2>
+        <div class="social">
+          <a href="https://facebook.com/tuan.khang.374463" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="mailto:khangsadboy2607@gmail.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/khangshark123" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+
       <div class="footer">Profile make by khangshark123 🦈💢</div>
     </div>
   </div>
-
-  <script>
-    // Music toggle functionality
-    const music = document.getElementById('bg-music');
-    const btn = document.getElementById('music-toggle');
-    let playing = false;
-    btn.addEventListener('click', () => {
-      if (!playing) {
-        music.play();
-        btn.textContent = '🔊';
-      } else {
-        music.pause();
-        btn.textContent = '🔈';
-      }
-      playing = !playing;
-    });
-  </script>
 </body>
 </html>
+
 
